@@ -5,11 +5,8 @@ using ABC_Bank.Response;
 
 using AutoMapper;
 
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 using System.Net;
 
@@ -33,6 +30,8 @@ namespace ABC_Bank.Controllers
             _response = new();
         }
 
+
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<APIResponse>> GetContactos()
@@ -44,7 +43,7 @@ namespace ABC_Bank.Controllers
                 _response.Resultado = _mapper.Map<IEnumerable<ContactoDto>>(contactoList);
                 _response.statusCode = HttpStatusCode.OK;
 
-                return Ok(_response);
+                return Ok(_response.Resultado);
 
             }
             catch (Exception ex)
@@ -83,7 +82,7 @@ namespace ABC_Bank.Controllers
 
                 _response.Resultado = _mapper.Map<ContactoDto>(contacto);
                 _response.statusCode = HttpStatusCode.OK;
-                return Ok(_response);
+                return Ok(_response.Resultado);
 
             }
             catch (Exception ex)
